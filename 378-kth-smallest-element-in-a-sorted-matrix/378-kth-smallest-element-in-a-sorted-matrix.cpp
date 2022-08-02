@@ -2,13 +2,23 @@ class Solution {
 public:
     int kthSmallest(vector<vector<int>>& matrix, int k) {
         int n = matrix.size();
-        vector<int> a;
+        vector<int> a(n,0);
         for ( int i = 0; i<n; i++ ){
-            for ( int j = 0; j<n; j++ ){
-                a.push_back(matrix[i][j]);
-            }
+            matrix[i].push_back(INT_MAX);
         }
-        sort(a.begin(),a.end());
-        return a[k-1];
+        
+        int ans;
+        for ( int i = 0; i<k; i++ ){
+            int ind = 0, val = matrix[0][a[0]];
+            for ( int j = 1; j<n; j++ ){
+                if ( val > matrix[j][a[j]] ){
+                    ind = j;
+                    val = matrix[j][a[j]];
+                }
+            }
+            ans = matrix[ind][a[ind]];
+            a[ind]++;
+        }
+        return ans;
     }
 };
