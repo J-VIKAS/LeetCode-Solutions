@@ -75,6 +75,7 @@ public:
     map<string,int> get_value;
     
     MapSum() {
+        
     }
     
     void insert(string key, int val) {
@@ -83,7 +84,6 @@ public:
         if ( node.check(key) ){
             val = val - prev_val;
         }
-        
         node.insert(key,val);
     }
     
