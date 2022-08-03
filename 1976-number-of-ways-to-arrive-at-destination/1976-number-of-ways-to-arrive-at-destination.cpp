@@ -1,34 +1,35 @@
 class Solution {
 public:
-  int countPaths(int n, vector<vector<int>>& roads) {
-        vector<long >ways(n , 0); int mod = 1e9+7; 
-        vector<long > distv(n , LONG_MAX);
-        vector<pair<long , long >> adj[n];
-        for(auto it : roads){
-            adj[it[0]].push_back({it[2] ,it[1]}); 
-            adj[it[1]].push_back({it[2] ,it[0]}); // dist , adj
+    
+    int countPaths(int n, vector<vector<int>>& roads) {
+        
+        map<int,vector<pair<int,int>>> adj;
+        for ( int i = 0; i<roads.size(); i++ ){
+            adj[roads[i][0]].push_back({roads[i][2],roads[i][1]});
+            adj[roads[i][1]].push_back({roads[i][2],roads[i][0]});
         }
-        distv[0]= 0; ways[0] = 1;
-        priority_queue<pair<long ,long > , vector<pair<long ,long >> , greater<pair<long ,long > > > pq;
-        pq.push({ 0 ,0 }); // dist , adj
-        while(!pq.empty()){
-            long time = pq.top().first;
-            long node = pq.top().second;
-            pq.pop();
-            for(auto it : adj[node]){
-                long ti = it.first; // time
-                long i = it.second; // adj node
-                if(ti + time < distv[i]){
-                    distv[i] = ti + time; ways[i]= ways[node];
-                    pq.push({ti + time,i });
+        
+        vector<long long> time(n+1,LONG_MAX);
+        time[0] = 0;
+        vector<long long> ways(n+1,0);
+        ways[0] = 1;
+        priority_queue<pair<long long,long long>, vector<pair<long long,long long>>, greater<pair<long long,long long>>> q;
+        q.push({0,0});
+        
+        while ( !q.empty() ){
+            pair<long, long> p = q.top();
+            q.pop();
+            for(auto j : adj[p.second]){
+                if(j.first + p.first < time[j.second]){
+                    time[j.second] = j.first + p.first;
+                    ways[j.second]= ways[p.second];
+                    q.push({j.first + p.first,j.second });
                 }
-                else if(ti + time == distv[i]){
-                    ways[i]= (ways[i] + ways[node])%mod;
+                else if(j.first + p.first == time[j.second]){
+                    ways[j.second]= (ways[j.second] + ways[p.second])%1000000007;
                 }
             }
         }
-        
-        
         
         return ways[n-1];
     }
