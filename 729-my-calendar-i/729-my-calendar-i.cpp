@@ -24,18 +24,10 @@ public:
     
     bool book(int start, int end) {
         
-        // cout << "store : ";
-        // for ( int i = 0; i<store.size(); i++ ){
-        //     cout << "(" << store[i].first << "," << store[i].second << ") ";
-        // } cout << "\n";
-        // cout << "checking : (" << start << "," << end << ")\n";
-        
         if ( !check(start,end) ){
-            // cout << "not found pushed it\n\n";
             store.push_back(make_pair(start,end));
             return true;
         }
-        // cout << "found\n\n";
         return false;
     }
 };
