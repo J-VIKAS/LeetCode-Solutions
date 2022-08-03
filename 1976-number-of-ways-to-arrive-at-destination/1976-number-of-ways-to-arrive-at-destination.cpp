@@ -20,7 +20,7 @@ public:
             pair<long, long> p = q.top();
             q.pop();
             for(auto j : adj[p.second]){
-                long new_time = j.first + p.first;
+                long long int new_time = j.first + p.first;
                 if( new_time < time[j.second]){
                     time[j.second] = new_time;
                     ways[j.second]= ways[p.second];
