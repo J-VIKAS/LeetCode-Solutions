@@ -23,29 +23,28 @@ public:
         
         int dist = -1;
         while ( !q.empty() ){
-            queue<pair<int,int>> p;
             dist += 1;
-            while ( !q.empty() ){
+            int s = q.size();
+            for ( int i = 0; i<s; i++ ){
                 pair<int,int> point = q.front();
                 q.pop();
                 if ( ifvalid(point.first,point.second+1,n) && !vis[point.first][point.second+1] ){
                     vis[point.first][point.second+1] = true;
-                    p.push(make_pair(point.first,point.second+1));
+                    q.push(make_pair(point.first,point.second+1));
                 }
                 if ( ifvalid(point.first,point.second-1,n) && !vis[point.first][point.second-1] ){
                     vis[point.first][point.second-1] = true;
-                    p.push(make_pair(point.first,point.second-1));
+                    q.push(make_pair(point.first,point.second-1));
                 }
                 if ( ifvalid(point.first+1,point.second,n) && !vis[point.first+1][point.second] ){
                     vis[point.first+1][point.second] = true;
-                    p.push(make_pair(point.first+1,point.second));
+                    q.push(make_pair(point.first+1,point.second));
                 }
                 if ( ifvalid(point.first-1,point.second,n) && !vis[point.first-1][point.second] ){
                     vis[point.first-1][point.second] = true;
-                    p.push(make_pair(point.first-1,point.second));
+                    q.push(make_pair(point.first-1,point.second));
                 }
             }
-            q = p;
         }
         
         if ( dist == 0 )
