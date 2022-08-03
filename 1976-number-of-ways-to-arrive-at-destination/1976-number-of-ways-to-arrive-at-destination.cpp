@@ -20,13 +20,13 @@ public:
             pair<long, long> p = q.top();
             q.pop();
             for(auto j : adj[p.second]){
-                int new_time = j.first + p.first;
-                if( j.first + p.first < time[j.second]){
-                    time[j.second] = j.first + p.first;
+                long new_time = j.first + p.first;
+                if( new_time < time[j.second]){
+                    time[j.second] = new_time;
                     ways[j.second]= ways[p.second];
-                    q.push({j.first + p.first,j.second });
+                    q.push({new_time,j.second });
                 }
-                else if(j.first + p.first == time[j.second]){
+                else if( new_time == time[j.second]){
                     ways[j.second]= (ways[j.second] + ways[p.second])%1000000007;
                 }
             }
