@@ -11,7 +11,7 @@ public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         
         ListNode *sA = headA, *sB = headB;
-        bool checkA = true, checkB = true; 
+        bool checkA = true, checkB = true;
         while ( headA != NULL && headB != NULL ){
             if ( headA == headB )
                 return headA;
