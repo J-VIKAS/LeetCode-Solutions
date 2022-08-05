@@ -10,16 +10,16 @@ class Solution {
 public:
     bool hasCycle(ListNode *head) {
         
-        map<ListNode*,bool> vis;
+        map<ListNode*,bool> present;
         while ( head != NULL ){
-            if ( !vis[head] ){
-                vis[head] = true;
-                head = head->next;
+            if ( present[head] ){
+                break;
             } else {
-                return true;
+                present[head] = true;
             }
+            head = head->next;
         }
-        return false;
         
+        return head;
     }
 };
