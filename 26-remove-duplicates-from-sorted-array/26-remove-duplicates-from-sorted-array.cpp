@@ -2,11 +2,14 @@ class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
         
-        map<int,bool> present;
+        sort(nums.begin(),nums.end());
+        
         int k = 0;
-        for ( int i = 0; i<nums.size(); i++ ){
-            if ( !present[nums[i]] ){
-                present[nums[i]] = true;
+        for ( int i = nums.size()-1; i >= 0; i-- ){
+            if ( i == 0 ){
+                k += 1;
+            }
+            else if ( nums[i] != nums[i-1] ){
                 k += 1;
             } else {
                 nums[i] = INT_MAX;
