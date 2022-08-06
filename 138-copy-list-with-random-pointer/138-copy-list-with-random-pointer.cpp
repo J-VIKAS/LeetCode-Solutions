@@ -30,7 +30,6 @@ public:
         while ( head != NULL ){
             temp->next = new Node(head->val);
             pointing[head] = temp->next;
-            // temp->next->random = pointing[head->random];
             head = head->next;
             temp = temp->next;
             i += 1;
