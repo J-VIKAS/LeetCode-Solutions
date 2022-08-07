@@ -31,33 +31,34 @@ public:
                 node = node->get(bit);
             }
         }
-        int max_xor(int num){
-            int Max = 0;
+        int MaxXOR(int num){
+            int XOR = 0;
             Node* node = root;
             for ( int i = 30; i>=0; i-- ){
                 int bit = (num >> i) & 1;
                 if ( node->containsKey(!bit) ){
-                    Max = Max | (1 << i);
+                    XOR = XOR ^ (1 << i);
                     node = node->get(!bit);
                 } else {
                     node = node->get(bit);
                 }
             }
-            return Max;
+            return XOR;
         }
     };
     
     int findMaximumXOR(vector<int>& nums) {
         
-        int n = nums.size(), ans = INT_MIN;
         Trie node;
-        for ( int i = 0; i<n; i++ ){
+        for ( int i = 0; i<nums.size(); i++ ){
             node.insert(nums[i]);
         }
-        for ( int i = 0; i<n; i++ ){
-            ans = max(ans, node.max_xor(nums[i]));
+        
+        int ans = INT_MIN;
+        for ( int i = 0; i<nums.size(); i++ ){
+            ans = max(ans,node.MaxXOR(nums[i]));
         }
+        
         return ans;
-    
     }
 };
