@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    long long int rec( int i, char ch, int n, vector<vector<long long>> &dp){
+    long long int rec( int i, char ch, int n, vector<vector<long long int>> &dp){
         if ( i == n ){
             return 1;
         }
@@ -11,32 +11,22 @@ public:
         }
         
         if ( ch == 'a' ){
-            dp[i][ch-'a'] = rec(i+1,'e',n,dp);
-            dp[i][ch-'a'] = dp[i][ch-'a']%(1000000007);
-            return dp[i][ch-'a'];
+            return dp[i][ch-'a'] = (rec(i+1,'e',n,dp))%(1000000007);            
         } else if ( ch == 'e' ){
-            dp[i][ch-'a'] = rec(i+1,'a',n,dp) + rec(i+1,'i',n,dp);
-            dp[i][ch-'a'] = dp[i][ch-'a']%(1000000007);
-            return dp[i][ch-'a'];
+            return dp[i][ch-'a'] = (rec(i+1,'a',n,dp) + rec(i+1,'i',n,dp))%(1000000007);
         } else if ( ch == 'i' ){
-            dp[i][ch-'a'] = rec(i+1,'a',n,dp) + rec(i+1,'e',n,dp) + rec(i+1,'o',n,dp) + rec(i+1,'u',n,dp);
-            dp[i][ch-'a'] = dp[i][ch-'a']%(1000000007);
-            return dp[i][ch-'a'];
+            return dp[i][ch-'a'] = (rec(i+1,'a',n,dp) + rec(i+1,'e',n,dp) + rec(i+1,'o',n,dp) + rec(i+1,'u',n,dp))%(1000000007);
         } else if ( ch == 'o' ){
-            dp[i][ch-'a'] = rec(i+1,'i',n,dp) + rec(i+1,'u',n,dp);
-            dp[i][ch-'a'] = dp[i][ch-'a']%(1000000007);
-            return dp[i][ch-'a'];
+            return dp[i][ch-'a'] = (rec(i+1,'i',n,dp) + rec(i+1,'u',n,dp))%(1000000007);
         } else {
-            dp[i][ch-'a'] = rec(i+1,'a',n,dp);
-            dp[i][ch-'a'] = dp[i][ch-'a']%(1000000007);
-            return dp[i][ch-'a'];        
+            return dp[i][ch-'a'] = (rec(i+1,'a',n,dp))%(1000000007);        
         }
         
     }
     
     int countVowelPermutation(int n) {
         
-        vector<vector<long long>> dp(n,vector<long long>(26,-1));
+        vector<vector<long long int>> dp(n,vector<long long int>(26,-1));
         vector<char> vowels = {'a','e','i','o','u'};
         int total = 0;
         for ( int i = 0; i<vowels.size(); i++ ){
