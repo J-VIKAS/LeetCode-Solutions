@@ -2,21 +2,25 @@ class Solution {
 public:
     int trap(vector<int>& height) {
         
-        int l = INT_MIN, r = INT_MIN, n = height.size();
-        vector<int> left(n,0), right(n,0);
-        
-        for ( int i = 0; i<n; i++ ){
-            l = max(l,height[i]);
-            left[i] = l;
-            r = max(r,height[n-i-1]);
-            right[n-i-1] = r;
-        }
-        
+        int n = height.size();
+        int l = 0, r = n-1, leftmax = 0, rightmax = 0;
         int ans = 0;
-        for ( int i = 0; i<n; i++ ){
-            if ( left[i] > height[i] && right[i] > height[i] ){
-                int less = min(left[i],right[i]);
-                ans += abs(less-height[i]);                
+        
+        while ( l <= r ){
+            if ( height[l] <= height[r] ){
+                if ( height[l] >= leftmax ){
+                    leftmax = height[l];
+                } else {
+                    ans += (leftmax-height[l]);
+                }
+                l++;
+            } else {
+                if ( height[r] >= rightmax ){
+                    rightmax = height[r];
+                } else {
+                    ans += (rightmax-height[r]);
+                }
+                r--;
             }
         }
         
