@@ -20,7 +20,7 @@ public:
         
         for ( int j = i; j<s.size(); j++ ){
             if ( check(s,i,j) ){
-                a.push_back(s.substr(i,j+1-i));
+                a.push_back(s.substr(i,j-i+1));
                 rec(j+1,s,a,ans);
                 a.pop_back();
             }
