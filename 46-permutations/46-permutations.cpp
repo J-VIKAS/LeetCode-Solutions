@@ -1,0 +1,39 @@
+class Solution {
+public:
+    
+    vector<vector<int>> ans;
+    void rec(int n, map<int,bool> &taken, vector<int> nums, vector<int> a){
+        
+        bool check = false;
+        for ( int i = 0; i<n; i++ ){
+            if ( !taken[i] ){
+                check = true;
+                break;
+            }
+        }
+        if ( !check ){
+            ans.push_back(a);
+            return;
+        }
+        
+        for ( int i = 0; i<n; i++ ){
+            if ( !taken[i] ){
+                taken[i] = true;
+                a.push_back(nums[i]);
+                rec(n,taken,nums,a);
+                a.pop_back();
+                taken[i] = false;
+            }
+        }
+        
+    }
+    
+    vector<vector<int>> permute(vector<int>& nums) {
+        
+        map<int,bool> taken;
+        vector<int> a;
+        rec(nums.size(),taken,nums,a);
+        return ans;
+        
+    }
+};
