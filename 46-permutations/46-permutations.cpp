@@ -8,22 +8,17 @@ public:
         for ( int i = 0; i<n; i++ ){
             if ( !taken[i] ){
                 check = true;
-                break;
-            }
-        }
-        if ( !check ){
-            ans.push_back(a);
-            return;
-        }
-        
-        for ( int i = 0; i<n; i++ ){
-            if ( !taken[i] ){
                 taken[i] = true;
                 a.push_back(nums[i]);
                 rec(n,taken,nums,a);
                 a.pop_back();
                 taken[i] = false;
             }
+        }
+        
+        if ( !check ){
+            ans.push_back(a);
+            return;
         }
         
     }
