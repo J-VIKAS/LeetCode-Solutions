@@ -14,7 +14,7 @@ public:
         for ( int i = 0; i<n-(len*m)+1; i++ ){
             unordered_map<string,int> temp;
             for ( int j = i; j<i+(len*m); j+=len ){
-                temp[ s.substr(j,len) ]++;                
+                temp[ s.substr(j,len) ]++;
             }
             if ( temp == present ){
                 ans.push_back(i);
