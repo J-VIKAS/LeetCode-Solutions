@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    bool check( string s, int l, int r, int len, map<string,bool> &present, map<string,int> freq  ){
+    bool check( string s, int l, int r, int len, unordered_map<string,bool> &present, unordered_map<string,int> freq  ){
         
         string temp = "";
         int i = l;
@@ -24,8 +24,8 @@ public:
         
         int n = s.size(), m =words.size(), len = words[0].size();
         
-        map<string,bool> present;
-        map<string,int> freq;
+        unordered_map<string,bool> present;
+        unordered_map<string,int> freq;
         for ( int i = 0; i<m; i++ ){
             present[ words[i] ] = true;
             freq[ words[i] ]++;
