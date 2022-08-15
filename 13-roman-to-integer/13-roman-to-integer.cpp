@@ -2,7 +2,7 @@ class Solution {
 public:
     int romanToInt(string s) {
         
-        map<char,int> value;
+        unordered_map<char,int> value;
         value['I'] = 1;
         value['V'] = 5;
         value['X'] = 10;
@@ -11,9 +11,8 @@ public:
         value['D'] = 500;
         value['M'] = 1000;
         
-        int n = s.size();
-        int ans = value[s[n-1]];
-        for ( int i = n-2; i>=0; i-- ){
+        int ans = value[s[s.size()-1]];
+        for ( int i = s.size()-2; i>=0; i-- ){
             if ( value[s[i]] >= value[s[i+1]] ){
                 ans += value[s[i]];
             } else {
