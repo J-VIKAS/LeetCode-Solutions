@@ -2,24 +2,22 @@ class Solution {
 public:
     int romanToInt(string s) {
         
-        unordered_map<char,int> value;
-        value['I'] = 1;
-        value['V'] = 5;
-        value['X'] = 10;
-        value['L'] = 50;
-        value['C'] = 100;
-        value['D'] = 500;
-        value['M'] = 1000;
-        
-        int ans = value[s[s.size()-1]];
-        for ( int i = s.size()-2; i>=0; i-- ){
-            if ( value[s[i]] >= value[s[i+1]] ){
-                ans += value[s[i]];
-            } else {
-                ans -= value[s[i]];
-            }
-        }
-        
-        return ans;
+        unordered_map<char,int> mp{
+        {'I',1},
+        {'V',5},
+        {'X',10},
+        {'L',50},
+        {'C',100},
+        {'D',500},
+        {'M',1000},
+    };
+    int ans =0;
+    for(int i=0;i<s.size();i++){
+        if(mp[s[i]]<mp[s[i+1]])
+            ans-=mp[s[i]];
+        else
+            ans+=mp[s[i]];
+    }
+    return ans;
     }
 };
