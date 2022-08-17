@@ -11,7 +11,7 @@ public:
                 j++;
             }
             count += (j-(mid+1));
-        }
+        }https://leetcode.com/problems/reverse-pairs/submissions/
 
         vector<int> m(ei-si+1);
         int x = 0, s1 = si, s2 = mid+1;
