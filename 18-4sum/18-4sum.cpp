@@ -1,36 +1,51 @@
 class Solution {
 public:
-    
-    vector<vector<int>> fourSum(vector<int>& nums, int target) {
-        
-        vector<vector<int>> ans;
-        int len = 0;
-        map<vector<int>,bool> p;
-        sort(nums.begin(),nums.end());
-        for ( int i = 0; i<nums.size(); i++ ){
-            for ( int j = i+1; j<nums.size()-1; j++ ){
-                long long int t = (long long int)target - nums[i] - nums[j];
-                int l = j+1, r = nums.size()-1;
-                if ( p[{nums[i],nums[j]}] )
-                    continue;
-                while ( l < r ){
-                    if ( nums[l] + nums[r] == t ){
-                        vector<int> temp = {nums[i],nums[j],nums[l],nums[r]};
-                        if ( len == 0 || (len != 0 && ans[len-1] != temp ) ){
-                            ans.push_back(temp);
-                            len += 1;
+    #define ll long long
+    vector<vector<int>> fourSum(vector<int>& nums, ll target) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>>ans;
+        ll n = nums.size();
+        for(ll i=0; i<n-3; i++) {
+            if(i>0 && nums[i]==nums[i-1]) {
+                continue;
+            }
+            
+            for(ll j=i+1; j<n-2; j++) {
+                if(j>i+1 && nums[j]==nums[j-1]) {
+                continue;
+                }
+                
+                ll tSum = target - (nums[i]+nums[j]);
+                ll l = j+1;
+                ll h = n-1;
+                
+                while(l<h) {
+                    if(nums[l] + nums[h] == tSum) {
+                        vector<int>oneAns = {nums[i], nums[j], nums[l], nums[h]};
+                        ans.push_back(oneAns);
+                        
+                        while(l<h && nums[l]==nums[l+1]) {
+                            l++;
                         }
-                        l += 1;
-                    } else if ( nums[l] + nums[r] < t ){
-                        l += 1;
-                    } else {
-                        r -= 1;
+                        
+                        while(l<h && nums[h]==nums[h-1]) {
+                            h--;
+                        }
+                        
+                        l++;
+                        h--;
+                    }
+                    
+                    else if(nums[l] + nums[h]<tSum) {
+                        l++;
+                    }
+                    
+                    else {
+                        h--;
                     }
                 }
-                p[{nums[i],nums[j]}] = true;
             }
         }
-        
         return ans;
     }
 };
