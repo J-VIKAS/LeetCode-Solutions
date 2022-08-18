@@ -6,9 +6,7 @@ public:
         vector<vector<int>> ans;
         sort(nums.begin(),nums.end());
         for ( int i = 0; i<nums.size(); i++){
-            int val1 = nums[i];
             for ( int j = i+1; j<nums.size(); j++){
-                int val2 = nums[j];
                 int l = j+1, r = nums.size()-1;
                 while ( l < r ){
                     if ( nums[l] + nums[r] == (long long int)target - nums[i] - nums[j] ){
