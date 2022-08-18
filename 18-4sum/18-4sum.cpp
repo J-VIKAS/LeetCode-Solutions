@@ -1,56 +1,37 @@
 class Solution {
 public:
     
-    void check(int start, vector<int> nums, long long int val, int n, int a, int b, vector<vector<int>> &ans){
-        vector<int> num;
-        for ( int i = start; i<n; i++ ){
-            num.push_back(nums[i]);
-        }
-        sort(num.begin(),num.end());
-        
-        int m = num.size();
-        int i = 0, j = m-1;
+    void binary_search(vector<int>& nums, int i, int j, long long target, int a, int b, vector<vector<int>>& ans){
+        map<vector<int>,bool> p;
         while ( i < j ){
-            if ( num[i]+num[j] == val ){
-                vector<int> arr = {a,b,num[i],num[j]};
-                if ( arr.size() == 4 ){
-                    sort(arr.begin(),arr.end());
-                    bool check = false;
-                    for ( int k = 0; k<ans.size(); k++ ){
-                        if ( ans[k] == arr ){
-                            check = true;
-                            break;
-                        }
-                    }
-            
-                    if ( !check ){
-                        ans.push_back(arr);
-                    }
-                }
-                j--;
-            } else if ( num[i]+num[j] > val ){
-                j--;
+            if ( nums[i] + nums[j] == target && !p[{nums[i],nums[j]}] ){
+                ans.push_back({a,b,nums[i],nums[j]});
+                p[{nums[i],nums[j]}] = true;
+                i += 1;
+            } else if ( nums[i] + nums[j] < target ){
+                i += 1;
             } else {
-                i++;
+                j -= 1;
             }
-        }
-        
+        } 
     }
     
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
         
-        long long total = target;
-        long long int sum = 0;
-        int n = nums.size();
+        sort(nums.begin(),nums.end());
+        map<vector<int>,bool> p;
         vector<vector<int>> ans;
-        for ( int i = 0; i<n-3; i++ ){
-            for ( int j = i+1; j<n-2; j++ ){
-                long long int val = total - nums[i] - nums[j];
-                check(j+1,nums,val,n,nums[i],nums[j],ans);
+        for ( int i = 0; i<nums.size(); i++ ){
+            for ( int j = i+1; j<nums.size(); j++ ){
+                if ( !p[{nums[i],nums[j]}] )
+                    try { 
+                        binary_search(nums,j+1,nums.size()-1,((long long)target-nums[i]-nums[j]),nums[i],nums[j],ans);
+                    } catch (int k){
+                        continue;
+                    }
+                p[{nums[i],nums[j]}] = true;
             }
         }
-        
-        sort(ans.begin(),ans.end());
         return ans;
         
     }
