@@ -3,14 +3,14 @@ public:
     int longestConsecutive(vector<int>& nums) {
         
         int ans = 0;
-        unordered_map<int,bool> p;
+        set<int> p;
         for ( int i = 0; i<nums.size(); i++ ){
-            p[nums[i]] = true;
+            p.insert(nums[i]);
         }
         for ( int i = 0; i<nums.size(); i++ ){
-            if ( !p[nums[i]-1] ){
+            if ( !p.count(nums[i]-1) ){
                 int j = 1;
-                while ( p[nums[i]+j] ){
+                while ( p.count(nums[i]+j) ){
                     j++;
                 }
                 ans = max(ans,j);
