@@ -45,24 +45,10 @@ public:
             
             for ( int i = 0; i<=m-n; i++ ){
                 if ( !visited[i] && isPossible(stamp,target,i,n,m) ){
-                    // cout << "i = " << i << "\n";
                     visited[i] = true;
                     anyupdates = true;
                     count = update(target,i,i+n,m);
                     ans.push_back(i);
-                    
-//                     cout << "vis : ";
-//                     for ( int j = 0; j<visited.size(); j++ ){
-//                         cout << visited[j] << " ";
-//                     } cout << "\n";
-                    
-//                     cout << "target : " << target << "\n";
-//                     cout << "count : " << count << "\n";
-                    
-//                     cout << "ans : ";
-//                     for ( int j = 0; j<ans.size(); j++ ){
-//                         cout << ans[j] << " ";
-//                     } cout << "\n";
                     
                     if ( count == m )
                         break;
