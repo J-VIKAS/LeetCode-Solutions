@@ -1,7 +1,7 @@
 class Solution:
     def reorderedPowerOf2(self, n: int) -> bool:
         allpossible = []
-        for i in range(33):
+        for i in range(32):
             value = list(str(2**i))
             value.sort()
             allpossible.append(value)
