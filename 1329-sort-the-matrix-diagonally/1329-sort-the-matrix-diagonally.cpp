@@ -24,14 +24,12 @@ public:
     vector<vector<int>> diagonalSort(vector<vector<int>>& mat) {
         int n = mat.size(), m = mat[0].size();
         for ( int i = n-1; i>=0; i-- ){
-            int ei = i, ej = 0;
-            while ( ei < n && ej < m ){ ei++;ej++; }
-            merge_sort(i,0,ei-1,ej-1,mat);
+            int mi = min(n-i,m);
+            merge_sort(i,0,mi+i-1,mi-1,mat);
         }
         for ( int j = 0; j<m; j++ ){
-            int ei = 0, ej = j;
-            while ( ei < n && ej < m ){ ei++;ej++; }
-            merge_sort(0,j,ei-1,ej-1,mat);
+            int mi = min(n,m-j);
+            merge_sort(0,j,mi-1,mi+j-1,mat);
         }
         return mat;
     }
