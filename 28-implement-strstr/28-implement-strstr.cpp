@@ -20,10 +20,9 @@ public:
     }
 
     int KMPSearch(string &s, string &p){
-        s += "1111111111112312312312312312312312321";
         int n = s.size(), m = p.size(), i = 0, j = 0;
         vector<int> lps = computeLPS(p,m);
-        while ( i < n-m+1 ){
+        while ( i < n ){
             if ( s[i] == p[j] ){
                 i++; j++;
             } else {
