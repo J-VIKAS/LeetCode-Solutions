@@ -1,53 +1,32 @@
 class Solution {
 public:
     
-    vector<vector<int>> d = {{-1,0},{1,0},{0,1},{0,-1}};
-    int count = 0;
-    
-    bool check1( int i, int j, int n, int m, vector<vector<char>> &grid ){
-        if ( i >= 0 && i < n && j >= 0 && j < m && grid[i][j] != '1' && grid[i][j] != '0' ) return true;
-        return false;
-    }
-    
-    bool check2( int i, int j, int n, int m, vector<vector<char>> &grid ){
-        if ( i >= 0 && i < n && j >= 0 && j < m && grid[i][j] == '1' ) return true;
-        return false;
-    }
-    
-    void dfs( int i, int j, vector<vector<bool>> &vis, vector<vector<char>>& grid, int n, int m ){
-        if ( !vis[i][j] ){
-            vis[i][j] = true;
-            bool check = false;
-            for ( int k = 0; k<4; k++ ){
-                if ( check1(i+d[k][0],j+d[k][1],n,m,grid) ){
-                    grid[i][j] = grid[i+d[k][0]][j+d[k][1]];
-                    check = true;
-                }
-            }
-            if ( !check ) {
-                grid[i][j] = 'd';
-                count++;
-            }
-            for ( int k = 0; k<4; k++ ){
-                if ( check2(i+d[k][0],j+d[k][1],n,m,grid) ){
-                    dfs(i+d[k][0],j+d[k][1],vis,grid,n,m);
-                }
-            }
-        }
-    }
-    
     int numIslands(vector<vector<char>>& grid) {
         
-        int n = grid.size(), m = grid[0].size();
-        vector<vector<bool>> vis(n,vector<bool>(m,false));
-        for ( int i = 0; i<n; i++ ){
-            for ( int j = 0; j<m; j++ ){
-                if ( !vis[i][j] && grid[i][j] == '1' ){
-                    dfs(i,j,vis,grid,n,m);
-                }
-            }
+        int count = 0;
+        queue<pair<int,int>> q;
+ vector<vector<bool>> visit(grid.size(),vector<bool>(grid[0].size(),false));
+    
+        for(int  i=0;i<grid.size();i++){
+            for(int j=0;j<grid[0].size();j++){
+             if(visit[i][j] || grid[i][j]=='0')continue;
+                q.push({i,j});
+                count++;
+                while(q.size()){
+                    int u = q.front().first;
+                    int v = q.front().second;
+                    q.pop();
+                    if(u>=grid.size() || u<0 || v>=grid[0].size() || v<0 || visit[u][v] || grid[u][v]=='0')continue;
+                    visit[u][v] = true; 
+                   q.push({u+1,v});
+                   q.push({u-1,v});
+                   q.push({u,v+1});
+                   q.push({u,v-1}); 
+                }  
+            }   
         }
         
+
         return count;
     }
 };
