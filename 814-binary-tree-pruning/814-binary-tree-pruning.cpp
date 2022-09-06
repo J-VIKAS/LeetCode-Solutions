@@ -11,15 +11,29 @@
  */
 class Solution {
 public:
+    
+    int rec( TreeNode* root ){
         
-    TreeNode* pruneTree(TreeNode* root) {
         if ( root == NULL )
             return 0;
         
-        root->left = pruneTree( root->left );
-        root->right = pruneTree(root->right);
+        int left = rec( root->left );
+        int right = rec( root->right );
         
-        if ( root->left == NULL && root->right == NULL && root->val == 0 ) return NULL;
+        if ( left == 0 ){
+            root->left = NULL;
+        }
+        if ( right == 0 ){
+            root->right = NULL;
+        }
+        
+        return left + right + root->val;
+    }
+        
+    TreeNode* pruneTree(TreeNode* root) {
+        
+        int value = rec( root );
+        if ( value == 0 ) return NULL;
         return root;
         
     }
