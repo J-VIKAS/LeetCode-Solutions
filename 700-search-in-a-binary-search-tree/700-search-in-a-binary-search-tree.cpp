@@ -12,27 +12,22 @@
 class Solution {
 public:
     
-    TreeNode* temp;
-    
-    void rec( TreeNode* root, int val ){
-        
-        if ( root == NULL ) return;
-        
-        if ( root->val > val ){
-            rec( root->left, val );
-        } else if ( root->val < val ){
-            rec( root->right, val );
-        } else {
-            temp = root;
-            return;
-        }
-        
-    }
-    
     TreeNode* searchBST(TreeNode* root, int val) {
         
-        rec( root, val );
-        return temp;
+        queue<TreeNode*> q;
+        q.push(root);
         
+        while ( !q.empty() ){
+            int k = q.size();
+            while ( k-- ){
+                TreeNode* p = q.front();
+                q.pop();
+                if ( p->val == val ) return p;
+                else if ( p->val > val && p->left != NULL ) q.push(p->left);
+                else if ( p->right != NULL ) q.push(p->right);
+            }
+        }
+        
+        return NULL;
     }
 };
