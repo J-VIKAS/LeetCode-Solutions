@@ -22,8 +22,6 @@ public:
         int left = 1 + rec(root->left);
         int right = 1 + rec(root->right);
         
-        // cout << left << "," << right << "\n";
-        
         diameter = max(diameter,left+right-2);
         
         return max( left, right );
