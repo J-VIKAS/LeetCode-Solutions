@@ -12,16 +12,14 @@ public:
         sort( properties.begin(), properties.end(), cmp );
         int n = properties.size(), ans = 0;
 
-        int MAX = properties[n-1][1], ind = n-1;        
+        int MAX = properties[n-1][1];        
         for ( int i = n-2; i>=0; i-- ){
-            if ( properties[i][0] < properties[ind][0] && properties[i][1] < properties[ind][1] ){
+            
+            if ( properties[i][1] < MAX ){
                 ans += 1;
             }
-            
-            if ( MAX < properties[i][1] ){
-                MAX = properties[i][1];
-                ind = i;
-            }
+
+            MAX = max( MAX, properties[i][1] );
         }
         
         return ans;        
