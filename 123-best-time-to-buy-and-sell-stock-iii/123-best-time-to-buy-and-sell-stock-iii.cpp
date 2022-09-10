@@ -16,12 +16,6 @@ public:
             max_profit_right[i] = max(Max-prices[i],max_profit_right[i+1]);
         }
         
-        // for ( int i = 0; i<n; i++ ){
-        //     cout << "i : " << i << " = ";
-        //     cout << max_profit_left[i] << ",";
-        //     cout << max_profit_right[i] << " \n";
-        // }
-        
         int ans = 0;
         for ( int i = 0; i<n; i++ ){
             if ( max_profit_left[i] + max_profit_right[i] > ans ){
