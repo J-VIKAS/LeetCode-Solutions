@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    static bool cmp( pair<int,int> a, pair<int,int> b ){
+    static bool cmp( pair<int,int> &a, pair<int,int> &b ){
         return a.first > b.first;
     }
     
