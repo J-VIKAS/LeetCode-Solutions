@@ -26,6 +26,6 @@ public:
             ans = max(ans,v[i].first*total_sum);
         }
         
-        return ans%(1000000000+7);
+        return (int)(ans%(1000000000+7));
     }
 };
