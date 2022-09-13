@@ -10,7 +10,6 @@ public:
             else if ( data[i] >> 5 == 7 ) total += 2;
             else if ( data[i] >> 6 == 3 ) total += 1;
             else if ( data[i] >> 7 == 1 ) total -= 1;
-            else total += 0;
         }
         return total == 0;
             
