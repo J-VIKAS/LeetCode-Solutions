@@ -19,12 +19,12 @@ public:
         if ( root == NULL )
             return 0;
         
-        int suml = rec( root->left );
-        int sumr = rec( root->right );
+        int suml = max(0, rec(root->left));
+        int sumr = max(0, rec(root->right));
         
-        ans = max({ans,root->val,root->val+suml,root->val+sumr,root->val+suml+sumr});
+        ans = max(ans,suml+sumr+root->val);
         
-        return max( suml, max(0, sumr) ) + root->val;
+        return max(suml,sumr) + root->val;
     }
     
     int maxPathSum(TreeNode* root) {
