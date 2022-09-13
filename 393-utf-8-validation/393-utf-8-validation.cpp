@@ -30,7 +30,6 @@ public:
             }
             count += 1;
         }
-        // cout << "s,count = " << s << "," << count << "\n";
         return count;
     }
 
@@ -40,7 +39,6 @@ public:
         for ( int i = 0; i<n; i++ ){
             string bin = convert_to_binary(data[i]);
             int total_ones = ones(bin);
-            // cout << "req, total_ones : " << req << "," << total_ones << "\n";
             if ( total_ones > 4 ) return false;
             else if ( req == 0 && total_ones == 1 ){
                 return false;
