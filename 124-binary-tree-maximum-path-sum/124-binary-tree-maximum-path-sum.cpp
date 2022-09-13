@@ -20,14 +20,12 @@ public:
             return 0;
         }
         
-        
         int suml = rec( root->left );
         int sumr = rec( root->right );
         
-        ans=max({ans,suml+sumr+root->val, sumr+root->val, suml+root->val,root->val});
+        ans = max({ans, suml + sumr + root->val, sumr + root->val, suml + root->val, root->val});
         
         return max({root->val, suml + root->val,sumr + root->val});
-        
         
     }
     
