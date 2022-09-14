@@ -14,7 +14,7 @@ public:
     
     
     int ans = 0;
-    map<int,int> freq;
+    unordered_map<int,int> freq;
     
     bool check ( int depth ){
         
@@ -45,7 +45,9 @@ public:
     }
     
     int pseudoPalindromicPaths (TreeNode* root) {
+        
         rec( root , 1);
         return ans;
+        
     }
 };
