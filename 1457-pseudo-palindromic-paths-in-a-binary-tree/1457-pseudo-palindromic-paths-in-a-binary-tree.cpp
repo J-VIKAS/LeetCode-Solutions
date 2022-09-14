@@ -14,7 +14,7 @@ public:
     
     
     int ans = 0;
-    unordered_map<int,int> freq;
+    int freq[10] = {0};
     
     bool check ( int depth ){
         
