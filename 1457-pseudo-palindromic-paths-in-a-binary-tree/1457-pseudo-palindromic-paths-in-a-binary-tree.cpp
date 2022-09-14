@@ -32,6 +32,7 @@ public:
     void rec( TreeNode* root, int depth ){
         
         if ( root == NULL ) return;
+        
         freq[root->val]++;
         
         rec( root->left, depth + 1 );
