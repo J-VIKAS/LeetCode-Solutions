@@ -7,7 +7,7 @@ public:
         int p[200003] = {0};
         for ( int i = 0; i<n; i++ )
             p[ changed[i] ]++;
-        while ( i <= 100001 ) {
+        while ( i <= 100000 ) {
             if ( p[ i ] > 0 ){
                 p[ i ]--;
                 if ( p[ i*2 ] > 0 ){
