@@ -1,21 +1,24 @@
 class Solution {
 public:
     vector<int> findOriginalArray(vector<int>& changed) {
-        int n = changed.size();
+        int n = changed.size(), i = 0;
         if ( n%2 != 0 ) return {};
         vector<int> ans;
-        sort(changed.begin(), changed.end());
-        unordered_map<int,int> p;
-        for ( int i = 0; i<n; i++ ){
+        int p[200003] = {0};
+        for ( int i = 0; i<n; i++ )
             p[ changed[i] ]++;
-        }
-        for ( int i = 0; i<n; i++ ){
-            if ( p[ changed[i] ] > 0 ){ 
-                p[ changed[i] ]--;
-                if ( p[ changed[i]*2 ] > 0 ){
-                    ans.push_back( changed[i] );
-                    p [ changed[i]*2 ]--;
+        while ( i <= 100001 ) {
+            if ( p[ i ] > 0 ){
+                p[ i ]--;
+                if ( p[ i*2 ] > 0 ){
+                    ans.push_back( i );
+                    p [ i*2 ]--;
+                } else {
+                    p[ i ]++;
+                    i++;
                 }
+            } else {
+                i++;
             }
         }
         if ( ans.size() == n/2 ) return ans;
