@@ -5,7 +5,7 @@ public:
         if ( n%2 != 0 ) return {};
         vector<int> ans;
         sort(changed.begin(), changed.end());
-        map<int,int> p;
+        int p[400005] = {0};
         for ( int i = 0; i<n; i++ ){
             p[ changed[i] ]++;
         }
