@@ -12,24 +12,15 @@
 class Solution {
 public:
     
-    bool check = true;
-    
-    void rec( TreeNode* l, TreeNode* r ){
-        if ( l == NULL && r == NULL ) return;
+    bool rec( TreeNode* l, TreeNode* r ){
+        if ( l == NULL && r == NULL ) return true;
         else if ( l != NULL && r != NULL ){
-            if ( l->val != r->val ){
-                check = false;
-                return;
-            }
-            rec( l->right, r->left );
-            rec( l->left, r->right );
-        } else {
-            check = false;
-        }
+            if ( l->val != r->val ) return false;
+            return rec( l->right, r->left ) & rec( l->left, r->right );
+        } else  return false;
     }
     
     bool isSymmetric(TreeNode* root) {
-        rec(root->left,root->right);
-        return check;
+        return rec(root->left,root->right);
     }
 };
