@@ -12,8 +12,7 @@ public:
     vector<vector<string>> findDuplicate(vector<string>& paths) {
         
         int n = paths.size(), in = 1;
-        map<string,int> ind;
-        map<int,vector<string>> content_paths;
+        map<string,vector<string>> content_paths;
         
         for ( int i = 0; i<n; i++ ){
             
@@ -28,7 +27,6 @@ public:
                 if ( paths[i][j] == '(' )   checkc = true;
                 
                 if ( paths[i][j] == ' ' ){
-                    if ( ind[ content ] == 0 ) ind[ content ] = in++;
                     temp.push_back({k,content});
                     content = "";
                     k = "";
@@ -40,20 +38,16 @@ public:
                 if ( paths[i][j] == ')' ) checkk = true;
                 
             }
-            
-            if ( ind[ content ] == 0 ) ind[ content ] = in++;
             temp.push_back({k,content});
             
-            for ( int j = 1; j<temp.size(); j++ ){
-                string res = addstring(temp[0].first,temp[j].first);
-                content_paths[ ind[temp[j].second] ].push_back( res );
-            }
+            for ( int j = 1; j<temp.size(); j++ )
+                content_paths[ temp[j].second ].push_back( temp[0].first + "/" + temp[j].first );
             
         }
         
         vector<vector<string>> ans;
-        for ( int i = 0; i<in; i++ ){
-            if ( content_paths[i].size() > 1 )  ans.push_back(content_paths[i]);
+        for ( auto i : content_paths ){
+            if ( i.second.size() > 1 )  ans.push_back(i.second);
         }
         
         return ans;        
