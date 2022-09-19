@@ -16,6 +16,7 @@ public:
         map<int,vector<string>> content_paths;
         
         for ( int i = 0; i<n; i++ ){
+            
             string content = "";
             bool checkc = false, checkk = true;
             string k = "";
