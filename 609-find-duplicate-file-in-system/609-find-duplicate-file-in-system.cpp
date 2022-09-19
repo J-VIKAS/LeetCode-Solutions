@@ -53,8 +53,7 @@ public:
         
         vector<vector<string>> ans;
         for ( int i = 0; i<in; i++ ){
-            if ( content_paths[i].size() > 1 )
-                ans.push_back(content_paths[i]);
+            if ( content_paths[i].size() > 1 )  ans.push_back(content_paths[i]);
         }
         
         return ans;        
