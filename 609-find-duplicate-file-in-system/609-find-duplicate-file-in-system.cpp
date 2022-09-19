@@ -1,18 +1,10 @@
 class Solution {
 public:
     
-    string addstring( string &root, string &file ){
-        string res = "";
-        for ( int i = 0; i<root.size(); i++ ) res += root[i];
-        res += '/';
-        for ( int i = 0; i<file.size(); i++ ) res += file[i];
-        return res;
-    }
-    
     vector<vector<string>> findDuplicate(vector<string>& paths) {
         
         int n = paths.size(), in = 1;
-        map<string,vector<string>> content_paths;
+        unordered_map<string,vector<string>> content_paths;
         
         for ( int i = 0; i<n; i++ ){
             
