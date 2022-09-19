@@ -45,7 +45,6 @@ public:
             
             for ( int j = 1; j<temp.size(); j++ ){
                 string res = addstring(temp[0].first,temp[j].first);
-                cout << temp[j].second << " -> " << res << "\n";
                 content_paths[ ind[temp[j].second] ].push_back( res );
             }
             
