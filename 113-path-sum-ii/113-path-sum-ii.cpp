@@ -20,7 +20,6 @@ public:
         if ( root == NULL ){
             return;
         }
-        // cout << root->val << "\n";
         p.push_back(root->val);
         
         if ( Sum + root->val == targetSum && root->left == NULL && root->right == NULL ){
