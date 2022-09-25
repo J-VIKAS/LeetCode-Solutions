@@ -9,18 +9,10 @@ public:
         this->k = k;
     }
     
-    void print( vector<int> &p ){
-        cout << "p : ";
-        for ( int i = 0; i<p.size(); i++ ) cout << p[i] << " ";
-        cout << "\n";
-    }
-    
     bool enQueue(int value) {
         if ( q[r] == -1 ){
             q[r++] = value;
             r = r%k;
-            // print(q);
-            // cout << "r = " << r << "\n";
             return true;
         } return false;
     }
@@ -30,8 +22,6 @@ public:
         else{
             q[f++] = -1;
             f = f%k;
-            // print(q);
-            // cout << "f = " << f << "\n";
             return true;
         }
     }
@@ -41,7 +31,6 @@ public:
     }
     
     int Rear() {
-        // cout << "Rear r = " << r << "\n";
         if ( r-1 < 0 ) return q[k-1];
         return q[r-1];
     }
