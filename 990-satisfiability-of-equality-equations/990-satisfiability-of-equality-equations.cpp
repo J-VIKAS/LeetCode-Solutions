@@ -11,11 +11,7 @@ public:
     void union_( int a, int b ){
         int pa = find(a);
         int pb = find(b);
-        if ( par[pa] < par[pb] ){
-            par[pb] = par[pa];
-        } else {
-            par[pa] = par[pb];
-        }
+        par[pa] = par[pb];
     }
     
     
@@ -31,7 +27,6 @@ public:
                 int a = equations[i][0] - 97;
                 int b = equations[i][3] - 97; 
                 union_(a,b);
-                // cout << "par a, b = " << par[a] << " " << par[b] << "\n";
             }
         }
         
