@@ -6,10 +6,12 @@ public:
         int n = dominoes.size(), tl = 0, tr = 0;
         bool checkl = false, checkr = false;
         int l[100010],  r[100010];
+        
         for ( int i = 0; i<n; i++ ){
             l[i] = INT_MAX;
             r[i] = INT_MAX;
         }
+        
         for ( int i = n-1; i>=0; i-- ){
             if ( dominoes[i] == 'R' )   checkl = false;
             else if ( dominoes[i] == 'L' ){
