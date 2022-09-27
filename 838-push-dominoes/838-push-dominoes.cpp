@@ -5,32 +5,30 @@ public:
         
         int n = dominoes.size(), tl = 0, tr = 0;
         bool checkl = false, checkr = false;
-        vector<int> l(n,INT_MAX), r(n,INT_MAX);
+        int l[100010],  r[100010];
+        for ( int i = 0; i<n; i++ ){
+            l[i] = INT_MAX;
+            r[i] = INT_MAX;
+        }
         for ( int i = n-1; i>=0; i-- ){
-            if ( dominoes[i] == 'R' ){
-                checkl = false;
-                tl = INT_MAX;
-            }   else if ( dominoes[i] == 'L' ){
+            if ( dominoes[i] == 'R' )   checkl = false;
+            else if ( dominoes[i] == 'L' ){
                 tl = 0;
-                l[i] = tl;
                 checkl = true;
-                tl++;
-            }   else if ( checkl ){
+            }
+            if ( checkl ){
                 l[i] = tl;
                 tl += 1;
             }
         }
         
         for ( int i = 0; i<n; i++ ){
-            if ( dominoes[i] == 'L' ){
-                checkr = false;
-                tr = INT_MAX;
-            }   else if ( dominoes[i] == 'R' ){
+            if ( dominoes[i] == 'L' )   checkr = false;
+            else if ( dominoes[i] == 'R' ){
                 tr = 0;
-                r[i] = tr;
                 checkr = true;
-                tr++;
-            }   else if ( checkr ){
+            }
+            if ( checkr ){
                 r[i] = tr;
                 tr += 1;
             }
